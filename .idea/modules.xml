@@ -3,13 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Bank/Bank.iml" filepath="$PROJECT_DIR$/Bank/Bank.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java08/Java08.iml" filepath="$PROJECT_DIR$/Java08/Java08.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java09/Java09.iml" filepath="$PROJECT_DIR$/Java09/Java09.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java10/Java10.iml" filepath="$PROJECT_DIR$/Java10/Java10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java11/Java11.iml" filepath="$PROJECT_DIR$/Java11/Java11.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java12/Java12.iml" filepath="$PROJECT_DIR$/Java12/Java12.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java13/Java13.iml" filepath="$PROJECT_DIR$/Java13/Java13.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Java14/Java14.iml" filepath="$PROJECT_DIR$/Java14/Java14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java08-Threads/Java08-Threads.iml" filepath="$PROJECT_DIR$/Java08-Threads/Java08-Threads.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java09-CommonClasses/Java09-CommonClasses.iml" filepath="$PROJECT_DIR$/Java09-CommonClasses/Java09-CommonClasses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java10-Enumerations&amp;Annotations/Java10-Enumerations&amp;Annotations.iml" filepath="$PROJECT_DIR$/Java10-Enumerations&amp;Annotations/Java10-Enumerations&amp;Annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java11-CollectionMap/Java11-CollectionMap.iml" filepath="$PROJECT_DIR$/Java11-CollectionMap/Java11-CollectionMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java12-Generic/Java12-Generic.iml" filepath="$PROJECT_DIR$/Java12-Generic/Java12-Generic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java13-IO/Java13-IO.iml" filepath="$PROJECT_DIR$/Java13-IO/Java13-IO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java14-NetworkProgramming/Java14-NetworkProgramming.iml" filepath="$PROJECT_DIR$/Java14-NetworkProgramming/Java14-NetworkProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java15-Reflection/Java15-Reflection.iml" filepath="$PROJECT_DIR$/Java15-Reflection/Java15-Reflection.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaSenior.iml" filepath="$PROJECT_DIR$/JavaSenior.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaTest/JavaTest.iml" filepath="$PROJECT_DIR$/JavaTest/JavaTest.iml" />
     </modules>
