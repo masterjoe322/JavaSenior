@@ -1,0 +1,146 @@
+1. throw 和 throws的相关介绍
+	
+	throw : 生成一个异常对象, 并抛出. 使用在方法内部. <---> 自动抛出异常对象
+
+	throws : 处理异常的方式, 和throw不同, 使用在方法声明处 <---> try catch finally
+
+	"上游排污, 下游治污"
+
+2. 谈谈你对同步代码块中同步监视器和共享数据的理解以及各自要求;
+	
+	同步监视器: 俗称锁
+				1. 任何对象都可以充当锁
+				2. 多个线程需要使用同一个锁
+
+	共享数据: 多个线程共同操作的数据, 即为共享数据
+	
+	需要使用同步机制, 将操作共享数据的代码包裹起来, 包裹的时候不可以多, 也不可以少
+
+3.  ArrayList, LinkedList, Vector 的异同: 
+	同: 三个类都实现了List接口, 存储数据的特点(有序可重复)相同. 底层都是Object[]存储的.
+	不同点: 
+		ArrayList : 作为List接口的主要实现类, 1.2, 执行效率高, 线程不安全; 
+
+		Vector : 作为List的古老实现类, since JDK1.0, List是1.2出现的; 线程安全的, 效率低. 
+
+		LinkedList : 底层结构使用双向链表存储的. 对于频繁的插入和删除操作, 使用此类比ArrayList效率高. 
+
+		1. ArrayList源码分析: 
+			1. jdk7 和jdk8 稍有不同
+			1. jdk7
+				- ArrayList list = new ArrayList(); // 底层创建了长度是10的Object[]数组, elementData
+				list.add(123) ; // elementData[0] = 123;
+				....
+				list.add(11); // 如果此次的添加导致底层elementData数组的容量不够, 则扩容. 默认情况下, 扩容为原来容量1.5倍, 同时需要将原有数组中的内容复制到现有数组中.
+
+				// 建议使用带有参数的ArrayList的构造器
+				ArrayList list = new ArrayList(50);
+				有点像懒汉式单例模式
+
+			2. jdk8 中的变化
+				- ArrayList list = new ArrayList(); // 底层Object[] elementData 初始化为{}, 没有创建10的默认代码.
+				list.add(123); // 第一次调用add() 方法时, 底层才创建了长度为10的数组, 并将元素放在了, elementData中.
+				...
+				// 后来的方法执行和JDK7的几乎没有区别.
+				有点像饿汉式单例模式
+
+			3. 总结: 
+				- JDK7中对象的创建类似于单例模式中的饿汉式, JDK8中的类似于单例模式中的懒汉式
+		2. LinkedList源码分析: 
+			- LinkedList list = new LinkedList(); // 内部声明了一个Node类型的first&last默认为null, 
+			list.add(123); // 将123封装到Node中, 创建了Node变量
+
+			// 其中Node定义为
+			    private static class Node<E> {
+			        E item;
+			        Node<E> next;
+			        Node<E> prev;
+
+			        Node(Node<E> prev, E element, Node<E> next) {
+			            this.item = element;
+			            this.next = next;
+			            this.prev = prev;
+			        }
+			    }
+			   体现了LinkedList的双向链表的说法
+
+		3. Vector源码分析
+			JDK7和JDK8中通过Vector()构造器创建对象时, 底层都创建了10个默认容量, 扩容的时候, 扩容两倍.
+
+4. Set子类介绍 . 
+	1. HashSet : Set的主要实现类, 线程不安全. 
+
+	2. LinkedHashSet : 作为HashSet的子类, 遍历其中的数据时, 可以按照添加的顺序去遍历, (和有序有区别)
+
+	3. TreeSet : 数据类型要相同, 我们要对这个进行排序. 可以按照添加的对象的指定属性, 进行排序. 
+
+5. 集合Collection中存储的如果是自定义类的对象, 需要自定义哪个方法? 为什么? 
+	1. Collection: 需要重写equals() 方法
+	2. List: 也需要重写equals() 方法, 
+	3. Set: HashSet, LinkedHashSet, 重写equals(), hashCode();
+	4. TreeSet: 需要实现Comparable或者Comparator. 在使用构造器的时候会有一个TreeSet(Comparator comparator) 的构造方法. 在比较的时候使用, 它是使用二叉树(红黑树)在底层进行存储的.
+
+6. Map 
+	Map : 双列数据, 存储key-value键值对, ----类似于高中的函数
+
+	HashMap: Map的主要实现类, 线程不安全, 效率高, 存储null的key和value
+		LinkedHashMap: 保证在遍历Map元素时候, 可以按照添加的顺序实现遍历
+                    原因: 在原有的HashMap底层结构基础上, 添加了一对指针, 指向前一个和后一个元素, 
+                    对于频繁的遍历操作, 此类执行效率高于HashMap.
+	TreeMap: 保证按照添加的key-value进行排序, 实现排序遍历. 按照key来排序. 此时考虑key的自然能排序, 或者定制排序.
+                底层使用了红黑树.
+	Hashtable: 古老实现类: 作为古老的实现类, 效率不高, 线程安全, 不能存储null的key和value. 随便哪个是null都不行.
+		Properties: 常用来处理配置文件. key和value都是String类型的.
+        
+
+    HashMap的底层: 数组+链表(JDK7之前的版本)
+                   数组+链表+红黑树(JDK8)
+    7. HashMap的底层实现原理.                              
+    8. HashMap和Hashtable的异同.
+    9. CurrentHashMap和Hashtable的异同;
+7. Map结构的理解
+       Map中的Key: 无序的, 不可重复的, 使用Set存储所有的Key. --->Key所在的类要重写equals()和hashCode(), 以HashMap为例.
+       Map中的Value: 无序的, 可重复的, 是哟个Collection的存储所有的value ---> Value所在的类要重写equals()方法
+        Map中的entry: 无需的, 不可重复的, 使用Set存储entry
+8. HashMap的底层实现原理: 
+       1. JDK7
+            - HashMap map = new HashMap();
+            在实例化之后, 底层创建了长度16的一维数组Entry[] table.
+            ....已经执行过put....
+            map.put(key0, value0); 
+            // 首先, 计算key0的hashCode(), 根据此Hash值得到在entry数组中的存放位置. 如果此位置上的数据为空, 此时的key0-value0添加成功. 如果此位置上不为空. (一个或多个数据以链表的形式存在的), 比较当前的key.....
+            如果key0的哈希值与已经存在的hash值都不相同, 则添加成功.
+            如果key0的哈希值, 与已经存在的哈希值相同, 继续比较equals(), 返回false, 添加成功, 返回true, 使用value0替换相同key的value值.
+            
+            - 补充: 有数据的时候, key-value和原来的数据以链表的方式存储. 在不断的添加过程中, 会涉及到扩容问题. 当超出临界值(threshold)的时候(并且要存放的位置非空的时候)就会扩容为原来的2倍, 并将原有的数据复制过来.
+
+        2. JDK8 : 与JDK7的不同.
+            - new HashMap(), 底层没有创建一个长度为16的数组.
+            - JDK8底层的数组是Node[], 不是Entry
+            - 首次调用put方法时, 底层去创建长度为16的数组.
+            - JDK7底层结构只有数组+链表, JDK8底层结构, 数据+链表+红黑树.
+                当数组的某一个索引位置上的元素以链表形式存在的数据个数大于8且当前数组的长度超过64, 
+                此时此索引位置上的所有数据改为使用红黑树存储.  
+
+9. LinkedHashMap 的底层原理实现.
+        1. 源码中的Entry拓展了
+            static class Entry<K,V> extends HashMap.Node<K,V> {
+                Entry<K,V> before, after; // 能够记录添加的元素的先后顺序.
+                Entry(int hash, K key, V value, Node<K,V> next) {
+                    super(hash, key, value, next);
+                }
+            }
+
+
+1. 反射
+    什么时候会用到反射: 反射的方式. 反射的特征: 动态性
+    
+    > 反射机制与面向对象中的封装性是不是矛盾的? 如何看待这两个技术? 
+        > 不矛盾. 
+2. 关于java.lang.Class
+    > 类的加载过程: 
+        编译: javac ---> .class文件.
+        > 程序在经过javac.exe命令后, 会生成一个或多个字节码文件(.class结尾), 接着我们使用java.exe命令对某个字节码文件进行解释运行. 相当于将某个字节码文件加载到内存中, 此过程叫做类的加载(加载到内存中); 加载到内存中的类, 就成为运行时类, 这个类就作为Class的一个实例.
+
+        > Class 的实例就对应着一个运行时类. Class的实例只能获取, 不能创建.
+        > 加载到内存中的运行时类, 会缓存一定的时间, 在此时间之内, 我们可以通过不同的方式来获取此运行时类. 

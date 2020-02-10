@@ -11,6 +11,7 @@
       <module fileurl="file://$PROJECT_DIR$/Java13-IO/Java13-IO.iml" filepath="$PROJECT_DIR$/Java13-IO/Java13-IO.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java14-NetworkProgramming/Java14-NetworkProgramming.iml" filepath="$PROJECT_DIR$/Java14-NetworkProgramming/Java14-NetworkProgramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java15-Reflection/Java15-Reflection.iml" filepath="$PROJECT_DIR$/Java15-Reflection/Java15-Reflection.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java16-JDK8Feature/Java16-JDK8Feature.iml" filepath="$PROJECT_DIR$/Java16-JDK8Feature/Java16-JDK8Feature.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaSenior.iml" filepath="$PROJECT_DIR$/JavaSenior.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaTest/JavaTest.iml" filepath="$PROJECT_DIR$/JavaTest/JavaTest.iml" />
     </modules>
